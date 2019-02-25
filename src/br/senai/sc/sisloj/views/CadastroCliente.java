@@ -5,6 +5,13 @@
  */
 package br.senai.sc.sisloj.views;
 
+import br.senai.sc.sisloj.dao.ClienteDao;
+import br.senai.sc.sisloj.modelo.Cliente;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Aluno
@@ -44,7 +51,8 @@ public class CadastroCliente extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        btnsalvar = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
 
         labelTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         labelTitulo.setText("Cadastro Cliente");
@@ -89,7 +97,7 @@ public class CadastroCliente extends javax.swing.JPanel {
         labelTelefone.setText("Telefone: ");
 
         try {
-            cpFormatadoTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####  ####")));
+            cpFormatadoTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -103,11 +111,11 @@ public class CadastroCliente extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Contato");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        jButton1.setText("Salvar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnsalvar.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        btnsalvar.setText("Salvar");
+        btnsalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnsalvarActionPerformed(evt);
             }
         });
 
@@ -162,8 +170,11 @@ public class CadastroCliente extends javax.swing.JPanel {
             .addComponent(jSeparator2)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnsalvar)
                 .addGap(133, 133, 133))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jSeparator3)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,8 +211,10 @@ public class CadastroCliente extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTelefone)
                     .addComponent(cpFormatadoTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGap(13, 13, 13)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(btnsalvar)
                 .addGap(14, 14, 14))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -218,22 +231,48 @@ public class CadastroCliente extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cpComplementoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnsalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalvarActionPerformed
+        Cliente cli =new Cliente();
+        cli.setNomcli(cpNome.getText());
+        cli.setEndcli(cpCidade.getText());
+        cli.setBaicli(cpBairro.getText());
+        cli.setComcli(cpComplemento.getText());
+        
+        String cep= cpFormatadoCep.getText();
+        cep= cep.replaceAll("[^0-9]","");
+        
+        String celular=cpFormatadoTelefone.getText();
+        celular=celular.replaceAll("[^0-9]","");
+        cli.setCepcli(Integer.parseInt(cep));
+        cli.setCelcli(Integer.parseInt(celular));
+        
+        //Insere o cliente no banco de dados
+        ClienteDao cliDao =new ClienteDao();
+        try {
+            cliDao.inserir(cli);
+            JOptionPane.showMessageDialog(null, "Cliente salvo com susesso");
+        } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null, "Falha ao salvar cliente !!!");
+            Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnsalvarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnsalvar;
     private javax.swing.JTextField cpBairro;
     private javax.swing.JTextField cpCidade;
     private javax.swing.JTextField cpComplemento;
     private javax.swing.JFormattedTextField cpFormatadoCep;
     private javax.swing.JFormattedTextField cpFormatadoTelefone;
     private javax.swing.JTextField cpNome;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel labelBairro;
     private javax.swing.JLabel labelCep;
     private javax.swing.JLabel labelCidade;
