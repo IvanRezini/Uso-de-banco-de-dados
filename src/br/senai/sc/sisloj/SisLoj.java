@@ -15,7 +15,7 @@ public class SisLoj {
         List<Cliente> clientes =c.listarClientes();
         for (int i = 0; i < clientes.size(); i++) {
             Cliente cli=clientes.get(i);
-            System.out.println(cli.getNomcli()+cli.getBaicli());
+            System.out.println(cli.getNomcli()+"\t"+cli.getBaicli());
         }
     }
     
