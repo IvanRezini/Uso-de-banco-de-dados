@@ -256,7 +256,12 @@ public class CadastroCliente extends javax.swing.JPanel {
             Logger.getLogger(CadastroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
+        cpNome.setText(null);
+        cpBairro.setText(null);
+        cpCidade.setText(null);
+        cpComplemento.setText(null);
+        cpFormatadoCep.setText(null);
+        cpFormatadoTelefone.setText(null);
         
     }//GEN-LAST:event_btnsalvarActionPerformed
 
