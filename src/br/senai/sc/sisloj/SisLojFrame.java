@@ -52,8 +52,8 @@ public class SisLojFrame extends javax.swing.JFrame {
         painelPrincipal = new javax.swing.JPanel();
         barraDeMenu = new javax.swing.JMenuBar();
         menuCliente = new javax.swing.JMenu();
-        menuListarCliente = new javax.swing.JMenuItem();
         menuCadastrarCliente = new javax.swing.JMenuItem();
+        menuListarCliente = new javax.swing.JMenuItem();
         painelColorido = new javax.swing.JMenu();
         rosa = new javax.swing.JMenuItem();
         amarelo = new javax.swing.JMenuItem();
@@ -77,9 +77,6 @@ public class SisLojFrame extends javax.swing.JFrame {
         menuCliente.setText("Cliente");
         menuCliente.setMaximumSize(new java.awt.Dimension(45, 45));
 
-        menuListarCliente.setText("Listar clientes");
-        menuCliente.add(menuListarCliente);
-
         menuCadastrarCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         menuCadastrarCliente.setText("Cadastrar cliente");
         menuCadastrarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +85,9 @@ public class SisLojFrame extends javax.swing.JFrame {
             }
         });
         menuCliente.add(menuCadastrarCliente);
+
+        menuListarCliente.setText("Listar clientes");
+        menuCliente.add(menuListarCliente);
 
         barraDeMenu.add(menuCliente);
 
@@ -133,11 +133,11 @@ public class SisLojFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+            .addComponent(painelPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
