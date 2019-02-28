@@ -31,13 +31,13 @@ public class SisLojFrame extends javax.swing.JFrame {
        PainelAmarelo pAmarelo = new PainelAmarelo();
      CadastroCliente cadastro = new CadastroCliente();
      
-     ListagemCliente lisCli =new ListagemCliente();
+     
      
        painelPrincipal.add(cadastro,"cadastrarCliente");
        painelPrincipal.add(pInicial,"painelInicial");
        painelPrincipal.add(pRosa,"painelRosa");
        painelPrincipal.add(pAmarelo,"painelAmarelo");
-       painelPrincipal.add(lisCli,"listaCliente");
+     
        CardLayout cl =(CardLayout) painelPrincipal.getLayout();
        cl.show(painelPrincipal, "painelInicial");
        this.setExtendedState(MAXIMIZED_BOTH);
@@ -168,6 +168,8 @@ public class SisLojFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_amareloActionPerformed
 
     private void menuListarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListarClienteActionPerformed
+      ListagemCliente lisCli =new ListagemCliente();
+          painelPrincipal.add(lisCli,"listaCliente");
         CardLayout cl =(CardLayout) painelPrincipal.getLayout();
        cl.show(painelPrincipal, "listaCliente");
     }//GEN-LAST:event_menuListarClienteActionPerformed
