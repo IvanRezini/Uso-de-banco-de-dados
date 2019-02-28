@@ -6,6 +6,8 @@
 package br.senai.sc.sisloj;
 
 import br.senai.sc.sisloj.views.CadastroCliente;
+import br.senai.sc.sisloj.views.ListagemCliente;
+
 import br.senai.sc.sisloj.views.PainelRosa;
 import br.senai.sc.sisloj.views.PainelAmarelo;
 import br.senai.sc.sisloj.views.PainelInicial;
@@ -29,11 +31,13 @@ public class SisLojFrame extends javax.swing.JFrame {
        PainelAmarelo pAmarelo = new PainelAmarelo();
      CadastroCliente cadastro = new CadastroCliente();
      
+     ListagemCliente lisCli =new ListagemCliente();
+     
        painelPrincipal.add(cadastro,"cadastrarCliente");
        painelPrincipal.add(pInicial,"painelInicial");
        painelPrincipal.add(pRosa,"painelRosa");
        painelPrincipal.add(pAmarelo,"painelAmarelo");
-       
+       painelPrincipal.add(lisCli,"listaCliente");
        CardLayout cl =(CardLayout) painelPrincipal.getLayout();
        cl.show(painelPrincipal, "painelInicial");
        this.setExtendedState(MAXIMIZED_BOTH);
@@ -87,6 +91,11 @@ public class SisLojFrame extends javax.swing.JFrame {
         menuCliente.add(menuCadastrarCliente);
 
         menuListarCliente.setText("Listar clientes");
+        menuListarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuListarClienteActionPerformed(evt);
+            }
+        });
         menuCliente.add(menuListarCliente);
 
         barraDeMenu.add(menuCliente);
@@ -137,7 +146,7 @@ public class SisLojFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
         );
 
         pack();
@@ -157,6 +166,11 @@ public class SisLojFrame extends javax.swing.JFrame {
        CardLayout cl =(CardLayout) painelPrincipal.getLayout();
        cl.show(painelPrincipal, "painelAmarelo");
     }//GEN-LAST:event_amareloActionPerformed
+
+    private void menuListarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListarClienteActionPerformed
+        CardLayout cl =(CardLayout) painelPrincipal.getLayout();
+       cl.show(painelPrincipal, "listaCliente");
+    }//GEN-LAST:event_menuListarClienteActionPerformed
 
     /**
      * @param args the command line arguments
